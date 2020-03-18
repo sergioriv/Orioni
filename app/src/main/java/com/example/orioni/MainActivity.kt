@@ -3,6 +3,7 @@ package com.example.orioni
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         TB_ProductPrice = findViewById(R.id.TB_ProductPrice)
         TB_ProductDate = findViewById(R.id.TB_ProductDate)
 
+
+    }
+
+    //Separo esto para ver si el error es de mi red
+    fun consultar(view: View){
         //Acceso al documento
         docRef.get()
             .addOnSuccessListener { document ->
@@ -32,9 +38,9 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Existe", "DocumentSnapshot data: ${document.data}")
 
                     //Asignamos los valores a los textbox
-                    TB_ProductName.text = document.getString("name")
-                    TB_ProductPrice.text = document.getString("price")
-                    TB_ProductDate.text = document.getString("created_at")
+                    TB_ProductName.text = "Prueba"//document.getString("name")
+                    TB_ProductPrice.text = "Prueba"//document.getString("price")
+                    TB_ProductDate.text = "Prueba"//document.getString("created_at")
                 } else {
                     Log.d("No Existe", "No such document")
                 }
