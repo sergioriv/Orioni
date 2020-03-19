@@ -40,7 +40,7 @@ class CreateProduct : AppCompatActivity() {
         val user = hashMapOf(
             "name" to name,
             "price" to price,
-            "date" to date
+            "created_at" to date
         )
 
         db.collection("products")
