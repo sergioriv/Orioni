@@ -5,44 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".CreateProduct">
 
-    <TextView
+    <EditText
         android:id="@+id/TB_ProductName"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="@string/textview_empty" />
+        android:hint="@string/edittext_name" />
 
-    <TextView
+    <EditText
         android:id="@+id/TB_ProductPrice"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="@string/textview_empty" />
-
-    <TextView
-        android:id="@+id/TB_ProductDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="@string/textview_empty" />
+        android:hint="@string/edittext_price" />
 
     <Button
-        android:onClick="consultar"
+        android:onClick="crear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/button_aceptar" />
 
     <Button
-        android:onClick="crearProductos"
+        android:onClick="verProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/button_crear_registros" />
+        android:text="@string/button_ver_registros" />
+
 
 </LinearLayout>

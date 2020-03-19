@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "com.example.orioni"
         multiDexEnabled true
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -39,5 +39,5 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     //Llamar a BD
-    implementation 'com.google.firebase:firebase-firestore:21.2.1'
+    implementation 'com.google.firebase:firebase-firestore:21.4.1'
 }
