@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+<!--
     <TextView
         android:id="@+id/TB_ProductName"
         android:layout_width="match_parent"
@@ -37,12 +37,17 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/button_aceptar" />
-
+-->
     <Button
         android:onClick="crearProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/button_crear_registros" />
+
+    <ListView
+        android:id="@+id/listProducts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

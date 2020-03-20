@@ -7,4 +7,5 @@
     <string name="button_aceptar">Aceptar</string>
     <string name="button_ver_registros">Ver Registros</string>
     <string name="button_crear_registros">Crear Registros</string>
+    <string name="valor">valor</string>
 </resources>
