@@ -38,6 +38,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.android.support:multidex:1.0.3'
 
-    //Llamar a BD
+    //Libreria a BD firestore
     implementation 'com.google.firebase:firebase-firestore:21.4.1'
 }
