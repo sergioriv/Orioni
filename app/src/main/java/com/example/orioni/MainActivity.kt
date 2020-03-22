@@ -46,17 +46,17 @@ class MainActivity : AppCompatActivity() {
         /*
             List Products
          */
-        val capitalCities = db.collection("products")
+        val products = db.collection("products")
         listView = findViewById<ListView>(R.id.listProducts)
         val listItems = arrayListOf<String>()
 
-        capitalCities.get().addOnSuccessListener { documents ->
+        products.get().addOnSuccessListener { documents ->
             for (document in documents) {
                 Log.d("Exito for", "${document.id} => ${document.data}")
 
                 listItems.add(document.get("name") as String)
             }
-            val arrayadapter=ArrayAdapter<String>(this@MainActivity,android.R.layout.simple_expandable_list_item_1,listItems)
+            val arrayadapter=ArrayAdapter(this@MainActivity,android.R.layout.simple_expandable_list_item_1,listItems)
             listView.adapter=arrayadapter
 
         }
