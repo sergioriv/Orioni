@@ -14,6 +14,7 @@ import androidx.multidex.MultiDex
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firestore.v1.ArrayValue
+import kotlinx.android.synthetic.main.activity_main.*
 import java.sql.Date
 import java.sql.Time
 
@@ -38,32 +39,31 @@ class MainActivity : AppCompatActivity() {
         TB_ProductPrice = findViewById(R.id.TB_ProductPrice)
         TB_ProductDate = findViewById(R.id.TB_ProductDate)
 */
-        listProducts();
+        listView()
     }
 
-    fun listProducts(){
+    fun listView() {
 
-        /*
-            List Products
-         */
-        val capitalCities = db.collection("products")
-        listView = findViewById<ListView>(R.id.listProducts)
-        val listItems = arrayListOf<String>()
+        val products = db.collection("products")
+        val listItems = arrayListOf<Product>()
 
-        capitalCities.get().addOnSuccessListener { documents ->
+        products.get().addOnSuccessListener { documents ->
             for (document in documents) {
-                Log.d("Exito for", "${document.id} => ${document.data}")
+                //Log.d("Exito for", "${document.id} => ${document.data}")
+                var product1: Product = Product(
+                    document.getString("name") as String,
+                    document.getDouble("price") as Double,
+                    document.getTimestamp("created_at") as Timestamp
+                )
+                listItems.add(product1)
 
-                listItems.add(document.get("name") as String)
             }
-            val arrayadapter=ArrayAdapter<String>(this@MainActivity,android.R.layout.simple_expandable_list_item_1,listItems)
-            listView.adapter=arrayadapter
-
+            val adapter = ProductAdapter(this, listItems)
+            listProducts.adapter = adapter
         }
             .addOnFailureListener { exception ->
                 Log.w("Error", "Error getting documents: ", exception)
             }
-
     }
 
     //Separo esto para ver si el error es de mi red
