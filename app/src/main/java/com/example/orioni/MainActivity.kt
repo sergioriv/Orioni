@@ -5,24 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.get
 import androidx.multidex.MultiDex
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firestore.v1.ArrayValue
 import kotlinx.android.synthetic.main.activity_main.*
-import java.sql.Date
-import java.sql.Time
+import java.sql.Timestamp
 
 class MainActivity : AppCompatActivity() {
     private lateinit var TB_ProductName:TextView
     private lateinit var TB_ProductPrice:TextView
     private lateinit var TB_ProductDate:TextView
-    private lateinit var listView: ListView
 
     // Access a Cloud Firestore instance from your Activity
     private val db = FirebaseFirestore.getInstance()
@@ -50,10 +42,11 @@ class MainActivity : AppCompatActivity() {
         products.get().addOnSuccessListener { documents ->
             for (document in documents) {
                 //Log.d("Exito for", "${document.id} => ${document.data}")
+
                 var product1: Product = Product(
                     document.getString("name") as String,
                     document.getDouble("price") as Double,
-                    document.getTimestamp("created_at") as Timestamp
+                    document.getTimestamp("created_at") as com.google.firebase.Timestamp
                 )
                 listItems.add(product1)
 
