@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             List Products
          */
         val products = db.collection("products")
-        listView = findViewById<ListView>(R.id.listProducts)
+        listView = findViewById(R.id.listProducts)
         val listItems = arrayListOf<String>()
 
         products.get().addOnSuccessListener { documents ->
