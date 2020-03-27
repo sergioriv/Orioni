@@ -44,8 +44,19 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this){
                     task ->
                     if(task.isSuccessful){
-                        //Enviar a vista usuario logeado
-                        startActivity(Intent(this, MainActivity::class.java))
+
+                        val user = FirebaseAuth.getInstance().currentUser
+
+                        //user?.isEmailVerified recupera si está verificado se pone ? para evitar
+                        //que llegue vacio
+                        if (user?.isEmailVerified == true){
+                            //Enviar a vista usuario logeado
+                            startActivity(Intent(this, MainActivity::class.java))
+                        }else{
+                            Toast.makeText(this, "Verificar correo",
+                                Toast.LENGTH_LONG).show()
+                        }
+
                     }else{
                         Toast.makeText(this, "Credenciales invalidas",
                             Toast.LENGTH_LONG).show()
