@@ -18,9 +18,9 @@ import java.sql.Date
 import java.sql.Time
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var TB_ProductName:TextView
-    private lateinit var TB_ProductPrice:TextView
-    private lateinit var TB_ProductDate:TextView
+    private lateinit var txtProductName:TextView
+    private lateinit var txtProductPrice:TextView
+    private lateinit var txtProductDate:TextView
     private lateinit var listView: ListView
 
     // Access a Cloud Firestore instance from your Activity
@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 /*
-        TB_ProductName = findViewById(R.id.TB_ProductName)
-        TB_ProductPrice = findViewById(R.id.TB_ProductPrice)
-        TB_ProductDate = findViewById(R.id.TB_ProductDate)
+        txtProductName = findViewById(R.id.txtProductName)
+        txtProductPrice = findViewById(R.id.txtProductPrice)
+        txtProductDate = findViewById(R.id.txtProductDate)
 */
         listProducts();
     }
@@ -76,10 +76,10 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Exito", "DocumentSnapshot data: ${document.data}")
 
                     //Asignamos los valores a los textbox
-                    TB_ProductName.text = document.getString("name")
-                    TB_ProductPrice.text = document.getLong("price").toString()
+                    txtProductName.text = document.getString("name")
+                    txtProductPrice.text = document.getLong("price").toString()
                     //Pongo ? al final de getTimestamp por si sale vacio
-                    TB_ProductDate.text = document.getTimestamp("created_at")?.toDate().toString()
+                    txtProductDate.text = document.getTimestamp("created_at")?.toDate().toString()
                 } else {
                     Log.d("SinExito", "No such document")
                 }
@@ -90,7 +90,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun crearProductos(view: View){
-        //El cambio de ventanas también jode
         startActivity(Intent(this, CreateProduct::class.java))
+    }
+
+    fun register(view: View){
+        startActivity(Intent(this, RegisterActivity::class.java))
+    }
+
+    fun login(view: View){
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 }

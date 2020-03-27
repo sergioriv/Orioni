@@ -5,52 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-<!--
-    <TextView
-        android:id="@+id/TB_ProductName"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/TB_UserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="@string/textview_empty" />
+        android:inputType="textEmailAddress"
+        android:hint="@string/editText_Email"/>
 
-    <TextView
-        android:id="@+id/TB_ProductPrice"
+    <EditText
+        android:id="@+id/TB_UserPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="@string/textview_empty" />
-
-    <TextView
-        android:id="@+id/TB_ProductDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="@string/textview_empty" />
-
-    <Button
-        android:onClick="consultar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/button_aceptar" />
--->
-    <Button
-        android:onClick="crearProductos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/button_create_products" />
-
-    <Button
-        android:onClick="register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/Register" />
+        android:inputType="textPassword"
+        android:hint="@string/editText_password"/>
 
     <Button
         android:onClick="login"
@@ -59,11 +32,19 @@
         android:layout_margin="10dp"
         android:text="@string/Login" />
 
-    <ListView
-        android:id="@+id/listProducts"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+    <Button
+        android:onClick="register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/Register" />
 
-    <!-- Deberíamos mostrar un mensaje cuando esté vacia la consulta -->
+    <TextView
+        android:onClick="forgetPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="@string/ResetPassword" />
 
 </LinearLayout>
