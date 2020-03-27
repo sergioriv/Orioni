@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                         val user = FirebaseAuth.getInstance().currentUser
 
                         //user?.isEmailVerified recupera si está verificado se pone ? para evitar
-                        //que llegue vacio
+                        //se cierre si llega vacio
                         if (user?.isEmailVerified == true){
                             //Enviar a vista usuario logeado
                             startActivity(Intent(this, MainActivity::class.java))
