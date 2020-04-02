@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.google.firebase.Timestamp
 import kotlinx.android.synthetic.main.item_product.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,7 +17,7 @@ class ProductAdapter(private val mContext: Context, private val listProducts: Li
         val product = listProducts[position]
 
         val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm a")
-        val timestamp = product.date as com.google.firebase.Timestamp
+        val timestamp = product.created_at
         val date = timestamp.toDate()
 
         layout.name.text = product.name

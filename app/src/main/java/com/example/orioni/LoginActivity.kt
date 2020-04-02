@@ -55,6 +55,11 @@ class LoginActivity : AppCompatActivity() {
                         }else{
                             Toast.makeText(this, "Verificar correo",
                                 Toast.LENGTH_LONG).show()
+
+                            //Esto es por si se venció el correo de verificación
+                            user?.sendEmailVerification()
+
+                            FirebaseAuth.getInstance().signOut()
                         }
 
                     }else{

@@ -13,6 +13,23 @@
         android:layout_margin="10dp"
         android:text="@string/button_create_products" />
 
+    <Button
+        android:onClick="loginView"
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/Login"/>
+
+    <Button
+        android:onClick="signOut"
+        android:id="@+id/signOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:text="@string/SignOut"/>
+
     <ListView
         android:id="@+id/listProducts"
         android:layout_width="match_parent"
