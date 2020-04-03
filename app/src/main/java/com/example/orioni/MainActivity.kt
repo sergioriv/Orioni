@@ -56,9 +56,8 @@ class MainActivity : AppCompatActivity() {
                 //Esto es consultando desde la clase
                 var user = User(document.id)
 
-                var list = user.getProduct()
-                Log.w("List2", "List: ${list}")
-                listItems.addAll(list)
+                listItems.addAll(user.getProduct())
+                Log.w("List2", "List: ${listItems}")
 
                 val adapter = ProductAdapter(this, listItems)
                 listProducts.adapter = adapter
