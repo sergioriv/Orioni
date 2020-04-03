@@ -44,9 +44,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listView() {
+        //Solo accedo a la collección de usuarios
         var userCollection = db.collection("User")
-        /*val products = db.collection("User").document("qdjDQpntShM7WqFcoLjN3bFoG2S2")
-            .collection("Products")*/
 
         val listItems = arrayListOf<Product>()
 
@@ -54,7 +53,19 @@ class MainActivity : AppCompatActivity() {
         userCollection.get().addOnSuccessListener { documents ->
             for (document in documents){
 
-                var userProductsRef =  db.collection("User").document(document.id)
+                //Esto es consultando desde la clase
+                var user = User(document.id)
+
+                var list = user.getProduct()
+                Log.w("List2", "List: ${list}")
+                listItems.addAll(list)
+
+                val adapter = ProductAdapter(this, listItems)
+                listProducts.adapter = adapter
+
+
+                //Esta es la consulta anidada
+                /*var userProductsRef =  db.collection("User").document(document.id)
                     .collection("Products")
 
                 userProductsRef.get().addOnSuccessListener { documents ->
@@ -67,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     Log.w("ProductList", "Name: ${listItems}")
                 }.addOnFailureListener { exception ->
                     Log.w("Error", "e: ", exception)
-                }
+                }*/
 
                 /*var user = User(document.id)
 
@@ -88,36 +99,6 @@ class MainActivity : AppCompatActivity() {
         }.addOnFailureListener { exception ->
             Log.w("Error", "Error getting documents: ", exception)
         }
-
-
-        /*products.get().addOnSuccessListener { documents ->
-            for (document in documents) {
-                //Log.d("Exito for", "${document.id} => ${document.data}")
-                val product1 = Product(
-                    document.getString("name") as String,
-                    document.getDouble("price") as Double,
-                    document.getTimestamp("created_at") as Timestamp
-                )
-                listItems.add(product1)
-
-                //listItems.add(document.toObject(Product::class.java))
-
-            }
-            Log.w("ProductList", "Name: ${listItems}")
-            val adapter = ProductAdapter(this, listItems)
-            listProducts.adapter = adapter
-
-            /*listProducts.setOnItemClickListener { _, _, _, _ ->
-
-                //Me daba error, cambié unas cosas
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("product", listItems)
-                startActivity(intent)
-            }*/
-        }
-            .addOnFailureListener { exception ->
-                Log.w("Error", "Error getting documents: ", exception)
-            }*/
     }
 
     fun crearProductos(view:View) {

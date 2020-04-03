@@ -36,11 +36,12 @@ class User (var userId:String){
                 listItems.add(document.toObject(Product::class.java))
                 Log.w("ProductName", "Name: ${document.toObject(Product::class.java).name}")
             }
-            Log.w("List", "List: ${listItems[0].name}")
+
         }.addOnFailureListener { exception ->
             Log.w("Error", "e: ", exception)
         }
 
+        Log.w("List", "List: ${listItems}")
         return listItems
     }
 
