@@ -54,17 +54,17 @@ class MainActivity : AppCompatActivity() {
             for (document in documents){
 
                 //Esto es consultando desde la clase
-                var user = User(document.id)
+                /*var user = User(document.id)
 
                 listItems.addAll(user.getProduct())
                 Log.w("List2", "List: ${listItems}")
 
                 val adapter = ProductAdapter(this, listItems)
-                listProducts.adapter = adapter
+                listProducts.adapter = adapter*/
 
 
                 //Esta es la consulta anidada
-                /*var userProductsRef =  db.collection("User").document(document.id)
+                var userProductsRef =  db.collection("User").document(document.id)
                     .collection("Products")
 
                 userProductsRef.get().addOnSuccessListener { documents ->
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                     Log.w("ProductList", "Name: ${listItems}")
                 }.addOnFailureListener { exception ->
                     Log.w("Error", "e: ", exception)
-                }*/
+                }
 
                 /*var user = User(document.id)
 
@@ -95,9 +95,14 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }*/
             }
+            val adapter = ProductAdapter(this, listItems)
+            listProducts.adapter = adapter
+            Log.w("ProductList", "Name: ${listItems}")
         }.addOnFailureListener { exception ->
             Log.w("Error", "Error getting documents: ", exception)
         }
+
+
     }
 
     fun crearProductos(view:View) {

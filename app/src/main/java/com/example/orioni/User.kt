@@ -1,24 +1,7 @@
 package com.example.orioni
 
-import android.content.Intent
 import android.util.Log
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-
-/*
-private val db = FirebaseFirestore.getInstance()
-    private var userRef= db.collection("User").document(userId)
-
-    private fun GetProduct():{
-        userRef.get().addOnSuccessListener { documents ->
-
-            for(document in documents){
-                val product = document.toObject(Product::class.java)
-            }
-        }
-    }
-
- */
 
 class User (var userId:String){
     private val db = FirebaseFirestore.getInstance()
@@ -36,12 +19,12 @@ class User (var userId:String){
                 listItems.add(document.toObject(Product::class.java))
                 Log.w("ProductName", "Name: ${document.toObject(Product::class.java).name}")
             }
-
+            Log.w("id", "Name: ${userId}")
         }.addOnFailureListener { exception ->
             Log.w("Error", "e: ", exception)
         }
 
-        Log.w("List", "List: ${listItems}")
+        Log.w("List", "List User: ${listItems}")
         return listItems
     }
 
