@@ -7,13 +7,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.multidex.MultiDex
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listProducts:ListView
@@ -49,60 +46,31 @@ class MainActivity : AppCompatActivity() {
 
         val listItems = arrayListOf<Product>()
 
-
         userCollection.get().addOnSuccessListener { documents ->
             for (document in documents){
-
-                //Esto es consultando desde la clase
-                /*var user = User(document.id)
-
-                listItems.addAll(user.getProduct())
-                Log.w("List2", "List: ${listItems}")
-
-                val adapter = ProductAdapter(this, listItems)
-                listProducts.adapter = adapter*/
-
-
-                //Esta es la consulta anidada
                 var userProductsRef =  db.collection("User").document(document.id)
                     .collection("Products")
 
-                userProductsRef.get().addOnSuccessListener { documents ->
-                    for(document in documents){
-                        listItems.add(document.toObject(Product::class.java))
-                        Log.w("ProductName", "Name: ${document.toObject(Product::class.java).name}")
+                userProductsRef.get().addOnSuccessListener { products ->
+                    for(product in products){
+                        listItems.add(product.toObject(Product::class.java))
                     }
-                    val adapter = ProductAdapter(this, listItems)
+
+                    listItems.sortBy { product ->
+                        product.created_at
+                    }
+
+                    var adapter = ProductAdapter(this, listItems)
                     listProducts.adapter = adapter
-                    Log.w("ProductList", "Name: ${listItems}")
+                    Log.w("User", "Name: ${document.getString("firstName")}")
                 }.addOnFailureListener { exception ->
                     Log.w("Error", "e: ", exception)
                 }
-
-                /*var user = User(document.id)
-
-                listItems.addAll(user.getProduct())
-
-                Log.w("Success", "${document.id} Exito: ${listItems}")
-
-                val adapter = ProductAdapter(this, listItems)
-                listProducts.adapter = adapter
-                listProducts.setOnItemClickListener { _, _, _, _ ->
-
-                    //Me daba error, cambié unas cosas
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("product", listItems)
-                    startActivity(intent)
-                }*/
+                Log.w("Success", "${document.id} Exito: ${document.getString("firstName")}")
             }
-            val adapter = ProductAdapter(this, listItems)
-            listProducts.adapter = adapter
-            Log.w("ProductList", "Name: ${listItems}")
         }.addOnFailureListener { exception ->
             Log.w("Error", "Error getting documents: ", exception)
         }
-
-
     }
 
     fun crearProductos(view:View) {

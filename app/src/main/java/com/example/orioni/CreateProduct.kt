@@ -33,41 +33,23 @@ class CreateProduct : AppCompatActivity() {
         val date:Timestamp = Timestamp.now()
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val product = Product(name, price, date)
+        val product = Product(name, price, date, userId)
 
-        val user = User(userId)
+        var userProductsRef =  db.collection("User").document(userId)
+            .collection("Products")
 
-        if(user.createProduct(product)){
-            Toast.makeText(this, "Producto creado",
-                Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(this, "Error al crear producto",
-                Toast.LENGTH_LONG).show()
+        userProductsRef.add(product).addOnCompleteListener { task ->
+            if(task.isComplete){
+                txtProductName.text.clear()
+                txtProductPrice.text.clear()
+
+                Toast.makeText(this, "Producto creado",
+                    Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "Error al crear producto",
+                    Toast.LENGTH_LONG).show()
+            }
         }
-
-
-        /*
-        val product = hashMapOf(
-            "name" to name,
-            "price" to price,
-            "created_at" to date
-        )
-
-        db.collection("Products")
-            .add(product)
-            .addOnSuccessListener { documentReference ->
-                Log.d("Exito", "DocumentSnapshot added with ID: ${documentReference.id}")
-
-                //No puedo limpiar
-                /*txtProductName.text.clear()
-                txtProductDate.text.clear()*/
-                Toast.makeText(this, "Subido correctamente", Toast.LENGTH_LONG).show()
-            }
-            .addOnFailureListener { e ->
-                Log.w("SinExito", "Error adding document", e)
-            }
-
-         */
     }
 
     fun verProductos(view: View){
