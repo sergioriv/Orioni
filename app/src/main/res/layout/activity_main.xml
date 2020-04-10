@@ -22,6 +22,15 @@
         android:text="@string/Login"/>
 
     <Button
+        android:onClick="myProducts"
+        android:id="@+id/myProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:text="@string/button_show_my_products"/>
+
+    <Button
         android:onClick="signOut"
         android:id="@+id/signOut"
         android:layout_width="match_parent"

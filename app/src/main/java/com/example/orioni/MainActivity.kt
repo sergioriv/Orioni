@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listProducts:ListView
     private lateinit var login:Button
     private lateinit var signOut:Button
+    private lateinit var myProducts:Button
 
     // Access a Cloud Firestore instance from your Activity
     private val db = FirebaseFirestore.getInstance()
@@ -28,13 +29,16 @@ class MainActivity : AppCompatActivity() {
         listProducts = findViewById(R.id.listProducts)
         login = findViewById(R.id.login)
         signOut = findViewById(R.id.signOut)
+        myProducts = findViewById(R.id.myProducts)
 
         if(FirebaseAuth.getInstance().currentUser != null){
             login.visibility = View.GONE
             signOut.visibility = View.VISIBLE
+            myProducts.visibility = View.VISIBLE
         }else{
             login.visibility = View.VISIBLE
             signOut.visibility = View.GONE
+            myProducts.visibility = View.GONE
         }
 
         this.listView()
@@ -95,5 +99,9 @@ class MainActivity : AppCompatActivity() {
             Toast.LENGTH_LONG).show()
 
         startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    fun myProducts(view:View){
+        startActivity(Intent(this, MyProducts::class.java))
     }
 }
