@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
-    <Button
-        android:onClick="crearProductos"
+    <EditText
+        android:id="@+id/TB_UserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/button_create_products" />
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        android:hint="@string/editText_Email"/>
 
-    <Button
-        android:onClick="loginView"
-        android:id="@+id/login"
+    <EditText
+        android:id="@+id/TB_UserPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/Login"/>
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:hint="@string/editText_password"/>
 
     <Button
-        android:onClick="myProducts"
-        android:id="@+id/myProducts"
+        android:onClick="login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:visibility="gone"
-        android:text="@string/button_show_my_products"/>
+        android:text="@string/Login" />
 
     <Button
-        android:onClick="signOut"
-        android:id="@+id/signOut"
+        android:onClick="register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:visibility="gone"
-        android:text="@string/SignOut"/>
+        android:text="@string/Register" />
 
-    <ListView
-        android:id="@+id/listProducts"
+    <TextView
+        android:onClick="forgetPassword"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="@string/ResetPassword" />
 
 </LinearLayout>

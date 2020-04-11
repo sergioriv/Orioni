@@ -5,92 +5,103 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.multidex.MultiDex
-import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firestore.v1.ArrayValue
-import java.sql.Date
-import java.sql.Time
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var TB_ProductName:TextView
-    private lateinit var TB_ProductPrice:TextView
-    private lateinit var TB_ProductDate:TextView
-    private lateinit var listView: ListView
+    private lateinit var listProducts:ListView
+    private lateinit var login:Button
+    private lateinit var signOut:Button
+    private lateinit var myProducts:Button
 
     // Access a Cloud Firestore instance from your Activity
     private val db = FirebaseFirestore.getInstance()
-    //Acceso a la base de datos colección products, al documento en especifico RoDhLdPlPoQuDwKOpGAD
-    //Esas llaves primarias están bien vergas, pero la base noSQL se encarga de que sean unicas
-    private val docRef = db.collection("products").document("RoDhLdPlPoQuDwKOpGAD")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         MultiDex.install(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-/*
-        TB_ProductName = findViewById(R.id.TB_ProductName)
-        TB_ProductPrice = findViewById(R.id.TB_ProductPrice)
-        TB_ProductDate = findViewById(R.id.TB_ProductDate)
-*/
-        listProducts();
-    }
 
-    fun listProducts(){
+        listProducts = findViewById(R.id.listProducts)
+        login = findViewById(R.id.login)
+        signOut = findViewById(R.id.signOut)
+        myProducts = findViewById(R.id.myProducts)
 
-        /*
-            List Products
-         */
-        val capitalCities = db.collection("products")
-        listView = findViewById<ListView>(R.id.listProducts)
-        val listItems = arrayListOf<String>()
-
-        capitalCities.get().addOnSuccessListener { documents ->
-            for (document in documents) {
-                Log.d("Exito for", "${document.id} => ${document.data}")
-
-                listItems.add(document.get("name") as String)
-            }
-            val arrayadapter=ArrayAdapter<String>(this@MainActivity,android.R.layout.simple_expandable_list_item_1,listItems)
-            listView.adapter=arrayadapter
-
+        if(FirebaseAuth.getInstance().currentUser != null){
+            login.visibility = View.GONE
+            signOut.visibility = View.VISIBLE
+            myProducts.visibility = View.VISIBLE
+        }else{
+            login.visibility = View.VISIBLE
+            signOut.visibility = View.GONE
+            myProducts.visibility = View.GONE
         }
-            .addOnFailureListener { exception ->
-                Log.w("Error", "Error getting documents: ", exception)
-            }
 
+        this.listView()
     }
 
-    //Separo esto para ver si el error es de mi red
-    fun consultar(view: View){
+    private fun listView() {
+        //Solo accedo a la collección de usuarios
+        var userCollection = db.collection("User")
 
-        //Acceso al documento
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d("Exito", "DocumentSnapshot data: ${document.data}")
+        val listItems = arrayListOf<Product>()
 
-                    //Asignamos los valores a los textbox
-                    TB_ProductName.text = document.getString("name")
-                    TB_ProductPrice.text = document.getLong("price").toString()
-                    //Pongo ? al final de getTimestamp por si sale vacio
-                    TB_ProductDate.text = document.getTimestamp("created_at")?.toDate().toString()
-                } else {
-                    Log.d("SinExito", "No such document")
+        userCollection.get().addOnSuccessListener { documents ->
+            for (document in documents){
+                var userProductsRef =  db.collection("User").document(document.id)
+                    .collection("Products")
+
+                userProductsRef.get().addOnSuccessListener { products ->
+                    for(product in products){
+                        listItems.add(product.toObject(Product::class.java))
+                    }
+
+                    listItems.sortBy { product ->
+                        product.created_at
+                    }
+
+                    var adapter = ProductAdapter(this, listItems)
+                    listProducts.adapter = adapter
+                    Log.w("User", "Name: ${document.getString("firstName")}")
+                }.addOnFailureListener { exception ->
+                    Log.w("Error", "e: ", exception)
                 }
+                Log.w("Success", "${document.id} Exito: ${document.getString("firstName")}")
             }
-            .addOnFailureListener { exception ->
-                Log.d("ErrorBD", "get failed with ", exception)
-            }
+        }.addOnFailureListener { exception ->
+            Log.w("Error", "Error getting documents: ", exception)
+        }
     }
 
-    fun crearProductos(view: View){
-        //El cambio de ventanas también jode
-        startActivity(Intent(this, CreateProduct::class.java))
+    fun crearProductos(view:View) {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null){
+            startActivity(Intent(this, CreateProduct::class.java))
+        }else{
+            Toast.makeText(this, "Debe iniciar sesión",
+                Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun loginView(view:View) {
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    fun signOut(view:View){
+        FirebaseAuth.getInstance().signOut()
+
+        Toast.makeText(this, "Sesión cerrada",
+            Toast.LENGTH_LONG).show()
+
+        startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    fun myProducts(view:View){
+        startActivity(Intent(this, MyProducts::class.java))
     }
 }

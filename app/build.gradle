@@ -10,6 +10,7 @@ android {
     defaultConfig {
         applicationId "com.example.orioni"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -38,6 +39,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.android.support:multidex:1.0.3'
 
-    //Llamar a BD
+    //Libreria a BD firestore
     implementation 'com.google.firebase:firebase-firestore:21.4.1'
+    //Autentificaión de firestore
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
 }

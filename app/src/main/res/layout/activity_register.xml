@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/Tb_UserFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:hint="@string/editText_first_name"/>
+
+    <EditText
+        android:id="@+id/Tb_UserLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:hint="@string/editText_last_name"/>
+
+    <EditText
+        android:id="@+id/TB_UserEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:hint="@string/editText_Email"/>
+
+    <EditText
+        android:id="@+id/TB_UserPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:hint="@string/editText_password"/>
+
+    <EditText
+        android:id="@+id/TB_ConfirmUserPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:hint="@string/ConfirmPassword"/>
+
+    <Button
+        android:onClick="register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/Register"/>
+</LinearLayout>

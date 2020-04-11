@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:hint="@string/edittext_name" />
+        android:hint="@string/editText_Product_name" />
 
     <EditText
         android:id="@+id/TB_ProductPrice"
@@ -23,21 +23,21 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:hint="@string/edittext_price" />
+        android:hint="@string/editText_price" />
 
     <Button
         android:onClick="crear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/button_aceptar" />
+        android:text="@string/button_submit" />
 
     <Button
         android:onClick="verProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/button_ver_registros" />
+        android:text="@string/button_show_products" />
 
 
 </LinearLayout>
