@@ -18,6 +18,7 @@
     <string name="Register">Registrarse</string>
     <string name="Login">Iniciar Sesión</string>
     <string name="SignOut">Cerrar Sesión</string>
+    <string name="Exchange">Intercambiar</string>
     <string name="ResetPassword">¿Olvidaste la contraseña?</string>
     <string name="ConfirmPassword">Confirmar contraseña</string>
 </resources>

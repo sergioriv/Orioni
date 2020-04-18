@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
@@ -57,7 +58,12 @@ class MainActivity : AppCompatActivity() {
 
                 userProductsRef.get().addOnSuccessListener { products ->
                     for(product in products){
-                        listItems.add(product.toObject(Product::class.java))
+                        if (product.getBoolean("deleted") == null){
+                            var prod = product.toObject(Product::class.java)
+                            prod.id = product.id //Le añado el id para hacer consulta de si aún está disponible
+                            listItems.add(prod)
+                            Log.w("Product", "name: ${prod.name}")
+                        }
                     }
 
                     listItems.sortBy { product ->
@@ -66,18 +72,23 @@ class MainActivity : AppCompatActivity() {
 
                     var adapter = ProductAdapter(this, listItems)
                     listProducts.adapter = adapter
-                    Log.w("User", "Name: ${document.getString("firstName")}")
+
+                    listProducts.setOnItemClickListener{ parent, view, position, id ->
+                        startActivity(Intent(this, ProductDetails::class.java)
+                            .putExtra("productId", listItems.get(position).id)
+                            .putExtra("userId", listItems.get(position).userId)
+                            .putExtra("own", false))
+                    }
                 }.addOnFailureListener { exception ->
                     Log.w("Error", "e: ", exception)
                 }
-                Log.w("Success", "${document.id} Exito: ${document.getString("firstName")}")
             }
         }.addOnFailureListener { exception ->
             Log.w("Error", "Error getting documents: ", exception)
         }
     }
 
-    fun crearProductos(view:View) {
+    fun createProducts(view:View) {
         val user = FirebaseAuth.getInstance().currentUser
 
         if (user != null){

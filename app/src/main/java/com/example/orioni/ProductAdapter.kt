@@ -26,7 +26,6 @@ class ProductAdapter(private val mContext: Context, private val listProducts: Li
         layout.name.text = product.name
         db.collection("User").document(product.userId).get().addOnSuccessListener { document ->
             layout.userName.text = document.getString("firstName") + " " + document.getString("lastName")
-            Log.w("UserName", "UserName: ${document.getString("firstName") + " " + document.getString("lastName")}")
         }
         layout.price.text = "$${product.price}"
         layout.date.text = sdf.format(date).toString()

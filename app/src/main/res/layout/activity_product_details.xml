@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProductDetails">
+
+    <TextView
+        android:id="@+id/TB_ProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/editText_Product_name" />
+
+    <TextView
+        android:id="@+id/TB_ProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/editText_price" />
+
+    <TextView
+        android:id="@+id/TB_ProductDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_margin="10dp"
+        android:text="@string/editText_date" />
+
+    <TextView
+        android:id="@+id/TB_ProductOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/editText_last_name" />
+
+    <Button
+        android:onClick="delete"
+        android:id="@+id/B_Delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/Delete" />
+
+    <Button
+        android:onClick="exchange"
+        android:id="@+id/B_Exchange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Exchange" />
+</LinearLayout>
