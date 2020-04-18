@@ -36,6 +36,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun login(view: View){
+        Toast.makeText(this, "Procesando...",
+            Toast.LENGTH_SHORT).show()
         val email:String = txtUserEmail.text.toString()
         val password:String = txtUserPassword.text.toString()
 

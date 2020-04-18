@@ -28,6 +28,8 @@ class CreateProduct : AppCompatActivity() {
     }
 
     fun crear(view: View){
+        Toast.makeText(this, "Procesando...",
+            Toast.LENGTH_SHORT).show()
         val name:String = txtProductName.text.toString()
         val price:Double = txtProductPrice.text.toString().toDouble()
         val date:Timestamp = Timestamp.now()
