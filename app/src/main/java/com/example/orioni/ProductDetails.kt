@@ -72,7 +72,7 @@ class ProductDetails : AppCompatActivity() {
                 if (task.isSuccessful){
                     Toast.makeText(this, "Producto eliminado",
                         Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MyProducts::class.java))
+                    startActivity(Intent(this, MyProfile::class.java))
                 }else{
                     Toast.makeText(this, "Error al eliminar el producto",
                         Toast.LENGTH_LONG).show()

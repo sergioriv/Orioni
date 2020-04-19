@@ -21,7 +21,7 @@
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MyProducts" />
+        <activity android:name=".MyProfile" />
     </application>
 
 </manifest>

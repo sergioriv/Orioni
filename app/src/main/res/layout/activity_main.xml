@@ -22,13 +22,13 @@
         android:text="@string/Login"/>
 
     <Button
-        android:onClick="myProducts"
-        android:id="@+id/myProducts"
+        android:onClick="myProfile"
+        android:id="@+id/myProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:visibility="gone"
-        android:text="@string/button_show_my_products"/>
+        android:text="@string/MyProfile"/>
 
     <Button
         android:onClick="signOut"
