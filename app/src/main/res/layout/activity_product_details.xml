@@ -15,6 +15,13 @@
         android:layout_margin="10dp"
         android:text="@string/editText_Product_name" />
 
+    <EditText
+        android:id="@+id/ET_ProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:inputType="text" />
+
     <TextView
         android:id="@+id/TB_ProductPrice"
         android:layout_width="match_parent"
@@ -23,11 +30,18 @@
         android:layout_margin="10dp"
         android:text="@string/editText_price" />
 
+    <EditText
+        android:id="@+id/ET_ProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:inputType="number" />
+
     <TextView
         android:id="@+id/TB_ProductDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
+        android:gravity="end"
         android:layout_margin="10dp"
         android:text="@string/editText_date" />
 
@@ -40,10 +54,38 @@
         android:text="@string/editText_last_name" />
 
     <Button
+        android:id="@+id/B_edit"
+        android:onClick="editProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:text="@string/Edit" />
+
+    <Button
+        android:id="@+id/B_Save"
+        android:onClick="saveProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:text="@string/Save" />
+
+    <Button
+        android:id="@+id/B_Cancel"
+        android:onClick="cancelEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:text="@string/Cancel" />
+
+    <Button
         android:onClick="delete"
         android:id="@+id/B_Delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:visibility="gone"
         android:text="@string/Delete" />
 
@@ -52,5 +94,22 @@
         android:id="@+id/B_Exchange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="@string/Exchange" />
+    <Button
+        android:onClick="verProductos"
+        android:id="@+id/B_MyProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:text="@string/button_show_my_products" />
+
+    <Button
+        android:onClick="mainMenu"
+        android:id="@+id/B_MainMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/button_main_menu" />
 </LinearLayout>

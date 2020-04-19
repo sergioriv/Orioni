@@ -112,8 +112,8 @@ class MyProfile : AppCompatActivity() {
             "lastName", eTxtUserLastName.text.toString())
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    txtUserFirstName.text = eTxtUserFirstName.text.toString()
-                    txtUserLastName.text = eTxtUserLastName.text.toString()
+                    txtUserFirstName.text = eTxtUserFirstName.text
+                    txtUserLastName.text = eTxtUserLastName.text
 
                     eTxtUserFirstName.isEnabled = false
                     eTxtUserLastName.isEnabled = false
