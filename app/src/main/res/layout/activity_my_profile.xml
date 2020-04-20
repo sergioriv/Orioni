@@ -68,6 +68,14 @@
         android:text="@string/Cancel" />
 
     <Button
+        android:onClick="changePassword"
+        android:id="@+id/B_ChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/button_change_password" />
+
+    <Button
         android:onClick="verProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -97,7 +97,7 @@
         android:layout_margin="10dp"
         android:text="@string/Exchange" />
     <Button
-        android:onClick="verProductos"
+        android:onClick="verPerfil"
         android:id="@+id/B_MyProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

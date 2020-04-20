@@ -173,7 +173,7 @@ class ProductDetails : AppCompatActivity() {
             Toast.LENGTH_LONG).show()
     }
 
-    fun verProductos(view:View){
+    fun verPerfil(view:View){
         startActivity(Intent(this, MyProfile::class.java))
     }
 }

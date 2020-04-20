@@ -4,7 +4,11 @@
     <string name="editText_first_name">Nombre</string>
     <string name="editText_Product_name">Nombre</string>
     <string name="editText_last_name">Apellido</string>
+    <string name="button_change_password">Cambiar Contraseña</string>
     <string name="editText_password">Contraseña</string>
+    <string name="editText_actual_password">Contraseña Actual</string>
+    <string name="editText_new_password">Nueva Contraseña</string>
+    <string name="button_update_password">Actualizar Contraseña</string>
     <string name="editText_Email">Correo</string>
     <string name="editText_price">Precio</string>
     <string name="editText_date">Fecha</string>

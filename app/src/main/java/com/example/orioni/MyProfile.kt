@@ -19,6 +19,7 @@ class MyProfile : AppCompatActivity() {
     private lateinit var edit:Button
     private lateinit var save:Button
     private lateinit var cancel:Button
+    private lateinit var changePassword:Button
 
     private lateinit var listProducts: ListView
 
@@ -36,6 +37,7 @@ class MyProfile : AppCompatActivity() {
         edit = findViewById(R.id.B_edit)
         save = findViewById(R.id.B_Save)
         cancel = findViewById(R.id.B_Cancel)
+        changePassword = findViewById(R.id.B_ChangePassword)
 
         db.collection("User").document(user?.uid.toString()).get().addOnSuccessListener { document ->
             eTxtUserFirstName.setText(document.getString("firstName"))
@@ -98,6 +100,7 @@ class MyProfile : AppCompatActivity() {
         txtUserFirstName.visibility = View.GONE
         txtUserLastName.visibility = View.GONE
         edit.visibility = View.GONE
+        changePassword.visibility = View.GONE
         eTxtUserFirstName.visibility = View.VISIBLE
         eTxtUserLastName.visibility = View.VISIBLE
         save.visibility = View.VISIBLE
@@ -121,6 +124,7 @@ class MyProfile : AppCompatActivity() {
                     txtUserFirstName.visibility = View.VISIBLE
                     txtUserLastName.visibility = View.VISIBLE
                     edit.visibility = View.VISIBLE
+                    changePassword.visibility = View.VISIBLE
                     eTxtUserFirstName.visibility = View.GONE
                     eTxtUserLastName.visibility = View.GONE
                     save.visibility = View.GONE
@@ -142,9 +146,14 @@ class MyProfile : AppCompatActivity() {
         txtUserFirstName.visibility = View.VISIBLE
         txtUserLastName.visibility = View.VISIBLE
         edit.visibility = View.VISIBLE
+        changePassword.visibility = View.VISIBLE
         eTxtUserFirstName.visibility = View.GONE
         eTxtUserLastName.visibility = View.GONE
         save.visibility = View.GONE
         cancel.visibility = View.GONE
+    }
+
+    fun changePassword(view:View){
+        startActivity(Intent(this, ChangePassword::class.java))
     }
 }
